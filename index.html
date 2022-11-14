@@ -63,7 +63,11 @@
 
   Telegram.WebApp.onEvent('mainButtonClicked', function(){
     console.log('123');
-    tg.sendData("some string that we need to send");
+    tg.sendData({
+      initData: tg.initData,
+      initDataUnsafe: tg.initDataUnsafe,
+      version: tg.version,
+    });
   });
 
 
