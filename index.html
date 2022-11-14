@@ -61,18 +61,6 @@
       .catch((e) => console.log('failed http request', e));
   });
 
-  let btnED = document.getElementById("btnED");
-  btnED.addEventListener('click', function(){
-    if (tg.MainButton.isActive){
-      tg.MainButton.setParams({"color": "#E0FFFF"});
-      tg.MainButton.disable() //скрываем кнопку
-    }
-    else{ //иначе
-      tg.MainButton.setParams({"color": "#143F6B"});
-      tg.MainButton.enable()
-    }
-  });
-
   Telegram.WebApp.onEvent('mainButtonClicked', function(){
     console.log('123');
     tg.sendData("some string that we need to send");
