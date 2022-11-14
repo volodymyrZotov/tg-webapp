@@ -62,12 +62,11 @@
   });
 
   Telegram.WebApp.onEvent('mainButtonClicked', function(){
-    console.log('123');
-    tg.sendData({
+    tg.sendData(JSON.stringify({
       initData: tg.initData,
       initDataUnsafe: tg.initDataUnsafe,
       version: tg.version,
-    });
+    }));
   });
 
 
