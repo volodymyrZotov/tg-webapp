@@ -56,7 +56,7 @@
   tg.MainButton.show()
 
   btn.addEventListener('click', function(){
-    fetch('https://secure-inlet-04865.herokuapp.com/')
+    fetch('https://secure-inlet-04865.herokuapp.com/ping')
       .then(() => console.log('success http request'))
       .catch((e) => console.log('failed http request', e));
   });
