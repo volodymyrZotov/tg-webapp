@@ -41,8 +41,7 @@
 <body>
     <div id="usercard"></div>
     <p>Just text</p>
-    <button id="btn" class="button">Show/Hide Main Button</button>
-    <button id="btnED" class="button">Enable/Disable Main Button</button>
+    <button id="btn" class="button">Http request</button>
 </body>
 <script>
   let tg = window.Telegram.WebApp;
@@ -54,14 +53,12 @@
   tg.MainButton.textColor = "#F55353";
   tg.MainButton.color = "#143F6B";
   tg.MainButton.setParams({"color": "#143F6B"});
+  tg.MainButton.show()
 
   btn.addEventListener('click', function(){
-    if (tg.MainButton.isVisible){
-      tg.MainButton.hide()
-    }
-    else{
-      tg.MainButton.show()
-    }
+    fetch('https://secure-inlet-04865.herokuapp.com/')
+      .then(() => console.log('success http request'))
+      .catch((e) => console.log('failed http request', e));
   });
 
   let btnED = document.getElementById("btnED");
@@ -77,19 +74,20 @@
   });
 
   Telegram.WebApp.onEvent('mainButtonClicked', function(){
+    console.log('123');
     tg.sendData("some string that we need to send");
   });
 
 
   let usercard = document.getElementById("usercard");
   let profName = document.createElement('p');
-  profName.innerText = `${tg.initDataUnsafe.user.first_name}
-${tg.initDataUnsafe.user.last_name}
-${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code})`;
+  profName.innerText = `${tg.initDataUnsafe?.user?.first_name}
+${tg.initDataUnsafe?.user?.last_name}
+${tg.initDataUnsafe?.user?.username} (${tg.initDataUnsafe?.user?.language_code})`;
   usercard.appendChild(profName);
 
   let userid = document.createElement('p');
-  userid.innerText = `${tg.initDataUnsafe.user.id}`;
+  userid.innerText = `${tg.initDataUnsafe?.user?.id}`;
   usercard.appendChild(userid);
 </script>
 </html>
